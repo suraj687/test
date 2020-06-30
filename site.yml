@@ -1,0 +1,17 @@
+---
+- name: configutre the database sever
+  hosts: database
+  roles:
+     - mysql
+- name: configre the webserver 
+  hosts: webserver
+  roles:
+     - nginx
+- name: configure the nodejs server
+  hosts: nodejs
+  roles:
+     - nodejs
+- name: configure the php server
+  hosts: php
+  roles:
+     - php

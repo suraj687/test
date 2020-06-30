@@ -1,0 +1,34 @@
+---
+- name: create the nginx file
+  file:
+      path: /etc/yum.repos.d/nginx.repo
+      state: present
+
+- name: make the nginx repo
+  yum_repository:
+    name: nginx
+    baseurl: "{{ nginx_url }}"
+    gpgcheck: 0
+    enabled: 1
+
+- name: run the yum command
+  command: yum repolist
+
+- name: install nginx service
+  yum: 
+      name: nginx
+      state: present
+
+- name: add the port in firewall
+  firewalld:
+    port: 80/tcp
+    permanent: yes
+    state: enabled
+    zone: public
+    immediate: yes 
+
+- name : start the nginx service
+  service: 
+    name : nginx
+    state: started
+       

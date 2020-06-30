@@ -1,0 +1,6 @@
+---
+# tasks file for nginx
+- import_tasks: redhat.yml
+  when: ansible_os_family == "RedHat"
+- import_tasks: ubuntu.yml
+  when: ansible_os_family == "debian"

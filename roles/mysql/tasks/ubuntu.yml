@@ -1,0 +1,9 @@
+---
+- name: install the mysql in ubuntu
+  apt:
+       name: mysql-server
+       state: present
+- name: start the mysql server
+  service:
+       name: mysql
+       state: started
